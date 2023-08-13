@@ -1,16 +1,17 @@
-const inputTask = document.querySelector('#add-task');
-const btnAddTask = document.querySelector('#add-task-button');
-const taskList = document.querySelector('#tasks');
-const btnEdit = document.querySelectorAll('.edit');
-const btnDelete = document.querySelectorAll('.delete');
+const inputTask = document.querySelector('#add-task'); // input add task
+const btnAddTask = document.querySelector('#add-task-button'); // botão add task
+const taskList = document.querySelector('#tasks'); // lista de tarefas
+const btnEdit = document.querySelectorAll('.edit'); // botão editar
+const btnDelete = document.querySelectorAll('.delete'); // botão deletar
+let arrTasks = []; // array de tasks
 
 const verifyInput = () => {
-  if (inputTask.value.length > 0) return true; // check if input is empty
-  return false; // check if input is not empty
+  if (inputTask.value.length > 0) return true; // checando se o input não está vazio
+  return false; // checando se o input está vazio
 };
 const createTask = newTask => {
-  const task = document.createElement('div');
-  task.classList.add('task');
+  const task = document.createElement('div'); // criando uma div
+  task.classList.add('task'); // adicionando uma classe nome task
   task.innerHTML = `<div class="custom-checkbox">
       <input type="checkbox" id="meu-checkbox-${taskList.childElementCount}" />
       <label for="meu-checkbox-${taskList.childElementCount}">
@@ -20,64 +21,61 @@ const createTask = newTask => {
       </label>
       <span class="material-icons edit">edit</span>
       <span class="material-icons delete">delete</span>
-    </div>`;
-  taskList.appendChild(task);
-  inputTask.value = '';
+    </div>`; // adicionando conteúdo
+  taskList.appendChild(task); // adicionando a div na lista
+  inputTask.value = ''; // limpando o input
 };
 
-let arrTasks = [];
 const saveTasks = () => {
-  const checkboxes = document.querySelectorAll('[id^="meu-checkbox-"]');
-  arrTasks = [];
-  const allTaskElements = document.querySelectorAll('.task');
+  const checkboxes = document.querySelectorAll('[id^="meu-checkbox-"]'); // selecionando todos os checkboxes das tasks
+  arrTasks = []; // limpando o array
+  const allTaskElements = document.querySelectorAll('.task'); // selecionando todas as tasks
   allTaskElements.forEach((task, index) => {
-    const taskValue = task.querySelector('.task-text').textContent;
-    arrTasks.push({ checkId: checkboxes[index].id, checked: checkboxes[index].checked, valueTask: taskValue });
-    localStorage.setItem('tasks', JSON.stringify(arrTasks));
-  });
+    const taskValue = task.querySelector('.task-text').textContent; // selecionando o conteúdo da task
+    arrTasks.push({ checkId: checkboxes[index].id, checked: checkboxes[index].checked, valueTask: taskValue }); // adicionando as tasks ao array
+    localStorage.setItem('tasks', JSON.stringify(arrTasks)); // salvando as tasks no local storage
+  }); // salvando as tasks
 };
 
 document.addEventListener('change', e => {
   if (e.target.closest('[id^="meu-checkbox-"]')) {
-    saveTasks();
+    saveTasks(); // salvando as tasks
   }
-});
-
-btnAddTask.addEventListener('click', () => {
-  if (verifyInput()) {
-    createTask(inputTask.value);
-    saveTasks();
-  }
-});
+}); // salvando as tasks ao clicar no checkbox
 
 document.addEventListener('click', e => {
   const target = e.target;
-  if (target.classList.contains('edit')) {
-    const newValue = prompt('Enter new value');
-    target.parentElement.querySelector('span:nth-child(3)').textContent = newValue;
+  if (target.closest('#add-task-button') && verifyInput()) {
+    createTask(inputTask.value);
     saveTasks();
+  } // checando se o botão é clicado e se o input não está vazio
+  if (target.classList.contains('edit')) {
+    const newValue = prompt('Enter new value'); // colendo o novo conteúdo
+    if (newValue === '') return; // checando se o novo conteúdo é vazio
+    target.parentElement.querySelector('span:nth-child(3)').textContent = newValue; // atualizando o conteúdo da task
+    saveTasks(); // salvando as tasks
     console.log('edit');
-  }
+  } // checando se o botão editar é clicado
   if (target.classList.contains('delete')) {
     if (JSON.parse(localStorage.getItem('tasks')).length === 1) {
-      localStorage.removeItem('tasks');
-    }
-    target.parentNode.parentNode.remove();
-    saveTasks();
+      localStorage.removeItem('tasks'); // removendo a task do local storage
+    } // checando se o botão deletar é clicado
+    target.parentNode.parentNode.remove(); // removendo a task
+    saveTasks(); // salvando as tasks
     console.log('delete');
   }
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  const tasks = JSON.parse(localStorage.getItem('tasks'));
+  const tasks = JSON.parse(localStorage.getItem('tasks')); // carregando as tasks
   if (tasks) {
-    arrTasks = tasks;
+    arrTasks = tasks; // passando as tasks para o array
     tasks.forEach(task => {
-      createTask(task.valueTask);
-      const checkboxElement = document.querySelector('#' + task.checkId);
+      createTask(task.valueTask); // adicionando as tasks
+      const checkboxElement = document.querySelector('#' + task.checkId); // selecionando o checkbox
       if (checkboxElement) {
-        checkboxElement.checked = task.checked;
-      }
-    });
-  }
+        checkboxElement.checked = task.checked; // atualizando o checkbox
+      } // checando se o checkbox existe
+    }); // adicionando as tasks e atualizando o checkbox
+  } // carregando as tasks se existirem
 });
