@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "sass": "^1.65.1"
+  },
+  "scripts": {
+    "compilar-sass": "sass assets/sass/styles.scss assets/css/styles.css"
+  }
+}

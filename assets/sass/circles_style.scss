@@ -1,0 +1,13 @@
+.circle {
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  transform: translate(-15rem, 9rem);
+  border-radius: 50%;
+  background: linear-gradient(to right, #0062a3, #29abe2);
+}
+
+.circle:nth-child(2) {
+  background: linear-gradient(to right, #f15, #f15a2a);
+  transform: translate(15rem, -9rem);
+}

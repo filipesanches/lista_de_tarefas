@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+@mixin display-flex($flex-flow, $justify-content, $align-items) {
+  display: flex;
+  flex-flow: $flex-flow;
+  justify-content: $justify-content;
+  align-items: $align-items;
+}
+
+@mixin border($border-properties) {
+  border: $border-properties;
+}
+$font-roboto: 'Roboto', sans-serif;
+$border-transparent: 4px solid rgba(255, 255, 255, 0.18);
+$border-transparent70: 4px solid rgba(255, 255, 255, 0.463);
+$transition-border-color: border-color 0.5s ease-out;
+$transparent-black: #00000033;
+$transparent-white: #ffffff36;
+$white: #ffffff;
+$black: #000000;
+$deep-blue: #101825;
+$deep-cerulean: #004578;
+$pale-blue: #c7e0f4;
+$light-gray: #f4f4f4;
+$royal-blue: #106ebe;
+$midnight-marine: rgba(16, 24, 37, 0.64);

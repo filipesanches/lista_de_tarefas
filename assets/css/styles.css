@@ -1,0 +1,203 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+.custom-checkbox {
+  display: flex;
+  align-items: center;
+}
+.custom-checkbox > span.material-icons {
+  color: #4a90e2;
+  cursor: pointer;
+  border-radius: 50px;
+  padding: 5px;
+  transition: background-color 0.3s ease-out;
+}
+.custom-checkbox > span.material-icons:nth-child(3) {
+  margin-left: 15px;
+}
+.custom-checkbox > span.material-icons:last-child {
+  color: #e74c3c;
+}
+.custom-checkbox > span.material-icons:hover {
+  background-color: rgba(255, 255, 255, 0.368627451);
+}
+
+.custom-checkbox input[type=checkbox] {
+  display: none;
+}
+
+.custom-checkbox label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.custom-checkbox .unchecked-icon,
+.custom-checkbox .checked-icon {
+  display: inline-block;
+  font-size: 24px;
+  margin-right: 8px;
+}
+
+.custom-checkbox .checked-icon {
+  display: none;
+}
+
+.custom-checkbox input[type=checkbox]:checked + label .unchecked-icon {
+  display: none;
+}
+
+.custom-checkbox input[type=checkbox]:checked + label .checked-icon {
+  display: inline-block;
+  color: #76aed8; /* Cor quando o checkbox está marcado */
+}
+
+.custom-checkbox input[type=checkbox]:checked + label .checked-icon + span {
+  text-decoration: line-through; /* risca o texto quando o checkbox está marcado */
+  color: #76aed8; /* Cor quando o checkbox está marcado */
+}
+
+.circle {
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  transform: translate(-15rem, 9rem);
+  border-radius: 50%;
+  background: linear-gradient(to right, #0062a3, #29abe2);
+}
+
+.circle:nth-child(2) {
+  background: linear-gradient(to right, #f15, #f15a2a);
+  transform: translate(15rem, -9rem);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100vh;
+  background-color: #101825;
+}
+
+.material-icons {
+  vertical-align: middle;
+}
+
+body div.root {
+  position: absolute;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  font: 100% "Roboto", sans-serif;
+  line-height: 1.5;
+  max-height: 650px;
+  height: 100%;
+  width: 100%;
+  margin-top: 25px;
+}
+body div.root div.box {
+  width: 550px;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(5px);
+  border: 4px solid rgba(255, 255, 255, 0.18);
+  border-radius: 40px;
+  z-index: 1;
+  overflow: hidden;
+}
+body div.root div.box div.content {
+  max-width: 700px;
+  width: 100%;
+  overflow: hidden;
+}
+body div.root div.box div.content header h1 {
+  color: #ffffff;
+  padding: 25px 0 0 30px;
+  font-size: 30pt;
+}
+body div.root div.box div.content header h1 > span {
+  padding-left: 10px;
+  font-size: 35pt;
+}
+body div.root div.box div.content section {
+  padding: 20px 10px;
+}
+body div.root div.box div.content section div#new-task {
+  position: relative;
+  padding: 20px 0;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: initial;
+}
+body div.root div.box div.content section div#new-task input {
+  color: #ffffff;
+  display: block;
+  width: 100%;
+  padding: 15px;
+  border: 4px solid rgba(255, 255, 255, 0.18);
+  border-right: none;
+  outline: none;
+  font-size: 15pt;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 20px 0 0 20px;
+  transition: border-color 0.5s ease-out;
+}
+body div.root div.box div.content section div#new-task input:active ~ button,
+body div.root div.box div.content section div#new-task input:focus ~ button,
+body div.root div.box div.content section div#new-task input:valid ~ button,
+body div.root div.box div.content section div#new-task input:active,
+body div.root div.box div.content section div#new-task input:focus,
+body div.root div.box div.content section div#new-task input:valid {
+  border-color: #ffffff;
+}
+body div.root div.box div.content section div#new-task input:active + label,
+body div.root div.box div.content section div#new-task input:focus + label,
+body div.root div.box div.content section div#new-task input:valid + label {
+  top: -5px;
+}
+body div.root div.box div.content section div#new-task label {
+  top: 37px;
+  left: 21px;
+  color: #ffffff;
+  position: absolute;
+  transition: top 0.3s ease-out;
+}
+body div.root div.box div.content section div#new-task button {
+  padding: 0 30px;
+  border-radius: 0 20px 20px 0;
+  border: 4px solid rgba(255, 255, 255, 0.18);
+  border-left: none;
+  outline: none;
+  cursor: pointer;
+  color: #ffffff;
+  background-color: #004578;
+  transition: color 0.3s ease-out, background-color 0.3s ease-out, border-color 0.5s ease-out;
+}
+body div.root div.box div.content section div#new-task button:hover {
+  background-color: #106ebe;
+}
+body div.root div.box div.content section div#tasks {
+  overflow: auto;
+  max-height: 300px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgba(16, 24, 37, 0.64);
+  color: #ffffff;
+  border: 4px solid rgba(255, 255, 255, 0.463);
+}
+body div.root div.box div.content section div#tasks ul {
+  list-style: none;
+}
+body div.root div.box div.content footer {
+  color: #ffffff;
+  padding: 45px 0 15px 0;
+  background: rgb(0, 69, 120);
+  background: linear-gradient(0deg, rgba(108, 113, 121, 0.57) 60%, rgba(255, 255, 255, 0) 100%);
+  text-align: center;
+}
+
+/*# sourceMappingURL=styles.css.map */
