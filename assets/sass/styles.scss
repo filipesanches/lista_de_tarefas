@@ -128,9 +128,17 @@ body {
 
 @media screen and (max-width: 768px) {
   div.root {
+    margin-top: 0 !important;
     overflow: hidden;
+    width: 100%;
     div.box {
-      width: 100% !important;
+      max-width: 100%;;
+      height: 100%;
+      div.content > footer {
+        width: 100%;
+        position: absolute !important;
+        bottom: 0 !important;
+      }
     }
   }
 }
