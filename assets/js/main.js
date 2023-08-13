@@ -45,17 +45,20 @@ document.addEventListener('change', e => {
 
 document.addEventListener('click', e => {
   const target = e.target;
+
   if (target.closest('#add-task-button') && verifyInput()) {
     createTask(inputTask.value);
     saveTasks();
   } // checando se o botão é clicado e se o input não está vazio
+
   if (target.classList.contains('edit')) {
     const newValue = prompt('Enter new value'); // colendo o novo conteúdo
-    if (newValue === '') return; // checando se o novo conteúdo é vazio
+    if (newValue === '' || newValue === null) return; // checando se o novo conteúdo é vazio ou nulo
     target.parentElement.querySelector('span:nth-child(3)').textContent = newValue; // atualizando o conteúdo da task
     saveTasks(); // salvando as tasks
     console.log('edit');
   } // checando se o botão editar é clicado
+
   if (target.classList.contains('delete')) {
     if (JSON.parse(localStorage.getItem('tasks')).length === 1) {
       localStorage.removeItem('tasks'); // removendo a task do local storage
@@ -63,7 +66,7 @@ document.addEventListener('click', e => {
     target.parentNode.parentNode.remove(); // removendo a task
     saveTasks(); // salvando as tasks
     console.log('delete');
-  }
+  } // checando se o botão deletar é clicado
 });
 
 document.addEventListener('DOMContentLoaded', () => {
