@@ -200,4 +200,13 @@ body div.root div.box div.content footer {
   text-align: center;
 }
 
+@media screen and (max-width: 768px) {
+  div.root {
+    overflow: hidden;
+  }
+  div.root div.box {
+    width: 100% !important;
+  }
+}
+
 /*# sourceMappingURL=styles.css.map */
